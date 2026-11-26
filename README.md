@@ -2,7 +2,7 @@
 
 Track what's in your fridge, freezer, pantry and spice rack. Add items from a photo or a barcode, get reminded before things expire, and get recipe ideas that use them up.
 
-> **Status:** specification phase. No app code yet.
+> **Status:** early development. The app shell is in place (task 1 of [tasks.md](specs/pantry-tracker/tasks.md)); inventory features come next.
 
 ## Planned features
 
@@ -21,6 +21,25 @@ Track what's in your fridge, freezer, pantry and spice rack. Add items from a ph
 - Supabase for auth, Postgres, edge functions and cron
 - Claude API for photo extraction and recipe suggestions
 - Open Food Facts for barcode lookup
+
+## Development
+
+Requires Node 22 (see `.nvmrc`).
+
+```sh
+npm install
+npm run dev          # dev server at http://localhost:5173
+npm run lint         # ESLint
+npm run typecheck    # TypeScript
+npm test             # unit tests (Vitest)
+npm run build        # production build with service worker, in dist/
+npm run preview      # serve dist/ at http://localhost:4173
+npm run e2e          # Playwright, desktop and mobile viewports, against the production build
+```
+
+The service worker only exists in the production build, so test installing and offline mode with `npm run build && npm run preview`. Browsers only allow installing over HTTPS or on localhost, so trying it on a phone before the app is deployed (task 20) needs an HTTPS tunnel to the preview server.
+
+App icons are generated from `public/favicon.svg` with `npm run icons`.
 
 ## Specs
 

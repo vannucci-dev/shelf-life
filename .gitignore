@@ -3,3 +3,8 @@ dist/
 .env
 .env.*
 .DS_Store
+dev-dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo

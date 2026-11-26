@@ -15,7 +15,7 @@ Milestones:
 
 ## M1: Manual inventory, offline
 
-- [ ] **1. Project scaffold**
+- [x] **1. Project scaffold**
   - Vite + React + TypeScript, ESLint, Prettier, Vitest and Playwright set up, with a mobile viewport project for Playwright.
   - `vite-plugin-pwa` with a manifest (name "Shelf Life", icons, `display: standalone`) and a service worker that precaches the app shell.
   - GitHub Actions CI: lint, typecheck, unit tests, build.
