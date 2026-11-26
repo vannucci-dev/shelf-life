@@ -30,5 +30,5 @@ This project uses a lightweight spec-driven workflow:
 |------|---------|
 | [`specs/pantry-tracker/requirements.md`](specs/pantry-tracker/requirements.md) | User stories with EARS-style acceptance criteria |
 | [`specs/pantry-tracker/design.md`](specs/pantry-tracker/design.md) | Architecture, data model and key flows |
-| `specs/pantry-tracker/tasks.md` | Ordered implementation tasks (coming next) |
+| [`specs/pantry-tracker/tasks.md`](specs/pantry-tracker/tasks.md) | Ordered implementation tasks by milestone |
 | [`docs/adr/`](docs/adr/) | Architecture Decision Records for the big choices |
