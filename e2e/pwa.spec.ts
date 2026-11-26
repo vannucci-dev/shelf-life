@@ -35,7 +35,7 @@ test('loads the app shell offline once the service worker is installed', async (
   await page.reload();
 
   await expect(page.getByRole('heading', { name: 'Shelf Life' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Fridge' })).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'Fridge' })).toBeVisible();
   await expect(page.getByRole('status')).toHaveText('Offline');
 });
 
