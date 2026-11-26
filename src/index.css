@@ -1,0 +1,133 @@
+:root {
+  --bg: #f7f5ef;
+  --surface: #ffffff;
+  --text: #1f2a24;
+  --muted: #5c6b63;
+  --brand: #2f6b4f;
+  --brand-contrast: #ffffff;
+  --border: #dcd8cc;
+  color-scheme: light dark;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141a17;
+    --surface: #1d2521;
+    --text: #e8ece9;
+    --muted: #9fb0a7;
+    --brand: #6fbf95;
+    --brand-contrast: #0f1512;
+    --border: #2e3934;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+}
+
+.app {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: env(safe-area-inset-top) 1rem env(safe-area-inset-bottom);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0 0.5rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--brand);
+}
+
+.offline-badge {
+  font-size: 0.8rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.tab {
+  flex: 0 0 auto;
+  font: inherit;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  min-height: 2.5rem;
+}
+
+.tab[aria-current='page'] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-contrast);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.update-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.15);
+}
+
+.update-banner span {
+  flex: 1;
+}
+
+.update-banner button {
+  font: inherit;
+  padding: 0.35rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 0;
+  background: var(--brand);
+  color: var(--brand-contrast);
+}
+
+.update-banner button.secondary {
+  background: transparent;
+  color: var(--text);
+}
