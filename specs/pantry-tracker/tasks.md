@@ -28,7 +28,7 @@ Milestones:
   - Seed `ShelfLifeRule` data as JSON, about 40 categories × locations, including fresh produce, dairy, meat, leftovers, opened jars and spices.
   - _Req: 3.1, 3.3, 3.5, 4.1_
 
-- [ ] **3. Local store**
+- [x] **3. Local store**
   - A Dexie schema for items, settings, products, overrides and outbox, with `updated_at` / `deleted_at` on every write.
   - A repository layer (`items.create/update/move/finish`) that is the only path to the DB.
   - _Req: 1.1–1.6, 7.1 · ADR-0002_
