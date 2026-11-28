@@ -157,7 +157,10 @@ describe('Inventory screens', () => {
 
     expect(await screen.findByText('Ham marked as thrown away')).toHaveRole('status');
     expect(await repo.items.get(ham.id)).toMatchObject({ status: 'discarded' });
-    expect(screen.queryByText('Ham', { selector: '.item-name' })).not.toBeInTheDocument();
+    // The list reloads asynchronously after the write, so wait for the row to go.
+    await waitFor(() =>
+      expect(screen.queryByText('Ham', { selector: '.item-name' })).not.toBeInTheDocument(),
+    );
   });
 
   it('closes a sheet with Escape', async () => {
