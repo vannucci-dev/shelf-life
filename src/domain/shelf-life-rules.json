@@ -1,0 +1,290 @@
+{
+  "$comment": "Seed ShelfLifeRule data (Req 4.1). days_unopened estimates a date when none is printed; days_after_opening caps an opened item (Req 3.3). Days are conservative household estimates.",
+  "rules": [
+    {
+      "category": "fresh_herbs",
+      "location": "fridge",
+      "days_unopened": 7
+    },
+    {
+      "category": "leafy_greens",
+      "location": "fridge",
+      "days_unopened": 5
+    },
+    {
+      "category": "bagged_salad",
+      "location": "fridge",
+      "days_unopened": 4,
+      "days_after_opening": 2
+    },
+    {
+      "category": "berries",
+      "location": "fridge",
+      "days_unopened": 4
+    },
+    {
+      "category": "fruit",
+      "location": "fridge",
+      "days_unopened": 14
+    },
+    {
+      "category": "fruit",
+      "location": "pantry",
+      "days_unopened": 5
+    },
+    {
+      "category": "vegetables",
+      "location": "fridge",
+      "days_unopened": 7
+    },
+    {
+      "category": "root_vegetables",
+      "location": "pantry",
+      "days_unopened": 21
+    },
+    {
+      "category": "milk",
+      "location": "fridge",
+      "days_unopened": 7,
+      "days_after_opening": 3
+    },
+    {
+      "category": "cream",
+      "location": "fridge",
+      "days_unopened": 7,
+      "days_after_opening": 3
+    },
+    {
+      "category": "yoghurt",
+      "location": "fridge",
+      "days_unopened": 14,
+      "days_after_opening": 4
+    },
+    {
+      "category": "soft_cheese",
+      "location": "fridge",
+      "days_unopened": 14,
+      "days_after_opening": 5
+    },
+    {
+      "category": "hard_cheese",
+      "location": "fridge",
+      "days_unopened": 30,
+      "days_after_opening": 21
+    },
+    {
+      "category": "butter",
+      "location": "fridge",
+      "days_unopened": 60,
+      "days_after_opening": 30
+    },
+    {
+      "category": "eggs",
+      "location": "fridge",
+      "days_unopened": 28
+    },
+    {
+      "category": "raw_meat",
+      "location": "fridge",
+      "days_unopened": 3,
+      "days_after_opening": 1
+    },
+    {
+      "category": "raw_poultry",
+      "location": "fridge",
+      "days_unopened": 2,
+      "days_after_opening": 1
+    },
+    {
+      "category": "mince",
+      "location": "fridge",
+      "days_unopened": 2,
+      "days_after_opening": 1
+    },
+    {
+      "category": "raw_fish",
+      "location": "fridge",
+      "days_unopened": 2,
+      "days_after_opening": 1
+    },
+    {
+      "category": "cooked_meat",
+      "location": "fridge",
+      "days_unopened": 5,
+      "days_after_opening": 3
+    },
+    {
+      "category": "smoked_fish",
+      "location": "fridge",
+      "days_unopened": 7,
+      "days_after_opening": 3
+    },
+    {
+      "category": "tofu",
+      "location": "fridge",
+      "days_unopened": 14,
+      "days_after_opening": 3
+    },
+    {
+      "category": "hummus",
+      "location": "fridge",
+      "days_unopened": 7,
+      "days_after_opening": 3
+    },
+    {
+      "category": "juice",
+      "location": "fridge",
+      "days_unopened": 7,
+      "days_after_opening": 5
+    },
+    {
+      "category": "leftovers",
+      "location": "fridge",
+      "days_unopened": 2
+    },
+    {
+      "category": "leftovers",
+      "location": "freezer",
+      "days_unopened": 90
+    },
+    {
+      "category": "raw_meat",
+      "location": "freezer",
+      "days_unopened": 180
+    },
+    {
+      "category": "raw_poultry",
+      "location": "freezer",
+      "days_unopened": 180
+    },
+    {
+      "category": "mince",
+      "location": "freezer",
+      "days_unopened": 90
+    },
+    {
+      "category": "raw_fish",
+      "location": "freezer",
+      "days_unopened": 90
+    },
+    {
+      "category": "frozen_vegetables",
+      "location": "freezer",
+      "days_unopened": 240
+    },
+    {
+      "category": "ice_cream",
+      "location": "freezer",
+      "days_unopened": 180,
+      "days_after_opening": 60
+    },
+    {
+      "category": "bread",
+      "location": "pantry",
+      "days_unopened": 4
+    },
+    {
+      "category": "bread",
+      "location": "freezer",
+      "days_unopened": 90
+    },
+    {
+      "category": "jam",
+      "location": "pantry",
+      "days_unopened": 365
+    },
+    {
+      "category": "jam",
+      "location": "fridge",
+      "days_after_opening": 42
+    },
+    {
+      "category": "pesto",
+      "location": "fridge",
+      "days_after_opening": 5
+    },
+    {
+      "category": "pasta_sauce",
+      "location": "pantry",
+      "days_unopened": 365
+    },
+    {
+      "category": "pasta_sauce",
+      "location": "fridge",
+      "days_after_opening": 4
+    },
+    {
+      "category": "mayonnaise",
+      "location": "fridge",
+      "days_after_opening": 60
+    },
+    {
+      "category": "condiments",
+      "location": "fridge",
+      "days_after_opening": 180
+    },
+    {
+      "category": "pickles",
+      "location": "fridge",
+      "days_after_opening": 60
+    },
+    {
+      "category": "tinned_food",
+      "location": "pantry",
+      "days_unopened": 730
+    },
+    {
+      "category": "tinned_food",
+      "location": "fridge",
+      "days_after_opening": 2
+    },
+    {
+      "category": "rice",
+      "location": "pantry",
+      "days_unopened": 730
+    },
+    {
+      "category": "pasta",
+      "location": "pantry",
+      "days_unopened": 730
+    },
+    {
+      "category": "flour",
+      "location": "pantry",
+      "days_unopened": 365
+    },
+    {
+      "category": "cereal",
+      "location": "pantry",
+      "days_unopened": 180,
+      "days_after_opening": 60
+    },
+    {
+      "category": "nuts",
+      "location": "pantry",
+      "days_unopened": 180,
+      "days_after_opening": 90
+    },
+    {
+      "category": "oil",
+      "location": "pantry",
+      "days_unopened": 365,
+      "days_after_opening": 180
+    },
+    {
+      "category": "ground_spices",
+      "location": "spice_rack",
+      "days_unopened": 730
+    },
+    {
+      "category": "whole_spices",
+      "location": "spice_rack",
+      "days_unopened": 1095
+    },
+    {
+      "category": "dried_herbs",
+      "location": "spice_rack",
+      "days_unopened": 365
+    }
+  ]
+}
