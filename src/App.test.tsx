@@ -1,29 +1,30 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { App } from './App.tsx';
+import { testRepository } from './test/repository.ts';
 
 describe('App shell', () => {
   it('shows the app name and the four locations', () => {
-    render(<App />);
+    render(<App repository={testRepository()} />);
     expect(screen.getByRole('heading', { name: 'Shelf Life' })).toBeInTheDocument();
     for (const name of ['Fridge', 'Freezer', 'Pantry', 'Spice rack']) {
       expect(screen.getByRole('tab', { name })).toBeInTheDocument();
     }
   });
 
-  it('switches location when a tab is clicked', () => {
-    render(<App />);
+  it('switches location when a tab is clicked', async () => {
+    render(<App repository={testRepository()} />);
     expect(screen.getByRole('tab', { name: 'Fridge' })).toHaveAttribute('aria-selected', 'true');
 
     fireEvent.click(screen.getByRole('tab', { name: 'Pantry' }));
 
     expect(screen.getByRole('tab', { name: 'Pantry' })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('tab', { name: 'Fridge' })).toHaveAttribute('aria-selected', 'false');
-    expect(screen.getByRole('tabpanel')).toHaveTextContent('Nothing in the pantry yet.');
+    expect(await screen.findByText('Nothing in the pantry yet.')).toBeInTheDocument();
   });
 
   it('moves between tabs with the arrow keys', () => {
-    render(<App />);
+    render(<App repository={testRepository()} />);
     const fridge = screen.getByRole('tab', { name: 'Fridge' });
     fridge.focus();
 
@@ -38,7 +39,7 @@ describe('App shell', () => {
 
   it('shows an offline badge when the connection drops', () => {
     const onLine = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(true);
-    render(<App />);
+    render(<App repository={testRepository()} />);
     expect(screen.queryByText('Offline')).not.toBeInTheDocument();
 
     onLine.mockReturnValue(false);
