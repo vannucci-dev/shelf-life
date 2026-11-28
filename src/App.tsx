@@ -1,44 +1,51 @@
 import { useState } from 'react';
+import type { Repository } from './db';
+import type { Location } from './domain';
+import { InventoryScreen } from './inventory/InventoryScreen.tsx';
+import { LOCATION_LABELS } from './inventory/locations.ts';
+import { RepositoryContext } from './inventory/repositoryContext.ts';
 import { LocationTabs, type LocationTab } from './LocationTabs.tsx';
 import { UpdatePrompt } from './pwa/UpdatePrompt.tsx';
 import { useOnlineStatus } from './pwa/useOnlineStatus.ts';
 
-const LOCATIONS: readonly LocationTab[] = [
-  { id: 'fridge', label: 'Fridge' },
-  { id: 'freezer', label: 'Freezer' },
-  { id: 'pantry', label: 'Pantry' },
-  { id: 'spice_rack', label: 'Spice rack' },
-];
+const TABS: readonly LocationTab[] = (Object.keys(LOCATION_LABELS) as Location[]).map((id) => ({
+  id,
+  label: LOCATION_LABELS[id],
+}));
 
-export function App() {
+interface Props {
+  /** Defaults to the app-wide repository. Tests pass one on a throwaway database. */
+  repository?: Repository;
+}
+
+export function App({ repository }: Props) {
   const online = useOnlineStatus();
-  const [selected, setSelected] = useState(LOCATIONS[0]!.id);
-  const current = LOCATIONS.find((l) => l.id === selected) ?? LOCATIONS[0]!;
+  const [selected, setSelected] = useState<Location>('fridge');
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Shelf Life</h1>
-        {!online && (
-          <span className="offline-badge" role="status">
-            Offline
-          </span>
-        )}
-      </header>
+    <RepositoryContext.Provider value={repository ?? null}>
+      <div className="app">
+        <header className="app-header">
+          <h1>Shelf Life</h1>
+          {!online && (
+            <span className="offline-badge" role="status">
+              Offline
+            </span>
+          )}
+        </header>
 
-      <LocationTabs tabs={LOCATIONS} selected={selected} onSelect={setSelected} />
+        <LocationTabs
+          tabs={TABS}
+          selected={selected}
+          onSelect={(id) => setSelected(id as Location)}
+        />
 
-      <main
-        className="empty-state"
-        role="tabpanel"
-        id={`panel-${current.id}`}
-        aria-labelledby={`tab-${current.id}`}
-      >
-        <p>Nothing in the {current.label.toLowerCase()} yet.</p>
-        <p className="muted">Items you add will show up here, even when you're offline.</p>
-      </main>
+        <main role="tabpanel" id={`panel-${selected}`} aria-labelledby={`tab-${selected}`}>
+          <InventoryScreen key={selected} location={selected} />
+        </main>
 
-      <UpdatePrompt />
-    </div>
+        <UpdatePrompt />
+      </div>
+    </RepositoryContext.Provider>
   );
 }

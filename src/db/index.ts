@@ -1,5 +1,10 @@
 import { ShelfLifeDB } from './schema';
-import { createRepository, LOCAL_OWNER_ID, type Repository } from './repository';
+import {
+  createRepository,
+  LOCAL_OWNER_ID,
+  type Repository,
+  type RepositoryOptions,
+} from './repository';
 
 export { createRepository, LOCAL_OWNER_ID, RepositoryError } from './repository';
 export type {
@@ -18,4 +23,12 @@ let repository: Repository | undefined;
 export function getRepository(): Repository {
   repository ??= createRepository(new ShelfLifeDB(), { ownerId: LOCAL_OWNER_ID });
   return repository;
+}
+
+/** A repository on its own named database, e.g. a throwaway one per test. */
+export function createLocalRepository(
+  dbName: string,
+  options: Partial<RepositoryOptions> = {},
+): Repository {
+  return createRepository(new ShelfLifeDB(dbName), { ownerId: LOCAL_OWNER_ID, ...options });
 }

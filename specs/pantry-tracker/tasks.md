@@ -33,7 +33,7 @@ Milestones:
   - A repository layer (`items.create/update/move/finish`) that is the only path to the DB.
   - _Req: 1.1–1.6, 7.1 · ADR-0002_
 
-- [ ] **4. Inventory screens**
+- [x] **4. Inventory screens**
   - Tabs per location, item rows with expiry badges, and an add/edit form.
   - Move between locations, a quantity stepper, and the "used up?" prompt at zero.
   - A "Used / Thrown away" action that records the reason.

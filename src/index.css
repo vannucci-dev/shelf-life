@@ -6,6 +6,11 @@
   --brand: #2f6b4f;
   --brand-contrast: #ffffff;
   --border: #dcd8cc;
+  --expired-bg: #fbe3e0;
+  --expired-text: #8f1d14;
+  --soon-bg: #fdf0cf;
+  --soon-text: #6e4a00;
+  --danger: #b3261e;
   color-scheme: light dark;
   font-family:
     system-ui,
@@ -25,6 +30,11 @@
     --brand: #6fbf95;
     --brand-contrast: #0f1512;
     --border: #2e3934;
+    --expired-bg: #4a1f1b;
+    --expired-text: #ffb4ab;
+    --soon-bg: #45360f;
+    --soon-text: #f6d47a;
+    --danger: #ffb4ab;
   }
 }
 
@@ -137,6 +147,282 @@ body {
 }
 
 .tab:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Inventory (task 4) */
+
+main {
+  padding-bottom: 6rem; /* room for the add button */
+}
+
+.item-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.25rem 0.5rem 0.25rem 0;
+}
+
+.item-row[data-status='expired'] {
+  border-left: 4px solid var(--expired-text);
+}
+
+.item-row[data-status='expiring_soon'] {
+  border-left: 4px solid var(--soon-text);
+}
+
+.item-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.15rem;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.item-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.item-expiry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+}
+
+.badge-expired {
+  background: var(--expired-bg);
+  color: var(--expired-text);
+}
+
+.badge-expiring_soon {
+  background: var(--soon-bg);
+  color: var(--soon-text);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+}
+
+.stepper button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.stepper button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.stepper output {
+  min-width: 2.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.fab {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  font: inherit;
+  font-weight: 600;
+  padding: 0.85rem 1.25rem;
+  border-radius: 999px;
+  border: 0;
+  background: var(--brand);
+  color: var(--brand-contrast);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.2);
+  cursor: pointer;
+}
+
+.toast {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: calc(5rem + env(safe-area-inset-bottom));
+  max-width: 24rem;
+  margin: 0 auto;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--text);
+  color: var(--bg);
+  text-align: center;
+}
+
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgb(0 0 0 / 0.4);
+  z-index: 10;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 32rem;
+  max-height: 92dvh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: 1rem 1rem 0 0;
+  padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 40rem) {
+  .sheet-backdrop {
+    align-items: center;
+  }
+  .sheet {
+    border-radius: 1rem;
+  }
+}
+
+.sheet h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.2rem;
+}
+
+.sheet-section {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.sheet-section h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.item-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  font: inherit;
+  font-size: 1rem; /* 16px or more stops iOS zooming on focus */
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+  min-height: 2.75rem;
+}
+
+.field-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-error {
+  margin: 0;
+  color: var(--danger);
+}
+
+.form-actions,
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.form-actions {
+  justify-content: flex-end;
+}
+
+.button,
+.chip {
+  font: inherit;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.button {
+  border: 0;
+  background: var(--brand);
+  color: var(--brand-contrast);
+  font-weight: 600;
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.button.danger {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid currentColor;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.button:focus-visible,
+.chip:focus-visible,
+.item-main:focus-visible,
+.stepper button:focus-visible,
+.fab:focus-visible {
   outline: 2px solid var(--brand);
   outline-offset: 2px;
 }
