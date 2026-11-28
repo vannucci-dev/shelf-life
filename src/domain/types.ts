@@ -62,3 +62,22 @@ export const DEFAULT_SETTINGS: Readonly<Settings> = Object.freeze({
   dietary: [],
   keep_photos: false, // Req 8.2
 });
+
+/** Barcode cache entry, shared across users and read-only to clients (design §3, Req 9). */
+export interface Product {
+  barcode: string; // EAN/UPC, primary key
+  name: string;
+  brand?: string;
+  quantity_text?: string; // "500 g"
+  category?: string;
+  source: 'open_food_facts' | 'user';
+  fetched_at: string;
+}
+
+/** The user's own correction for a barcode (Req 9.3). Synced, so it carries the record fields. */
+export interface UserProductOverride extends SyncedRecord {
+  barcode: string;
+  name?: string;
+  category?: string;
+  default_location?: Location;
+}

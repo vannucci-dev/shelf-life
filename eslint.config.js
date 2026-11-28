@@ -25,5 +25,24 @@ export default defineConfig([
     files: ['*.config.ts', 'e2e/**/*.ts'],
     languageOptions: { globals: globals.node },
   },
+  {
+    // The repository layer is the only path to the DB (task 3, ADR-0002).
+    files: ['src/**/*.{ts,tsx}'],
+    ignores: ['src/db/**'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [{ name: 'dexie', message: 'Use the repository in src/db instead.' }],
+          patterns: [
+            {
+              regex: '(^|/)db/(schema|repository)$',
+              message: 'Import from src/db (the repository), not its internals.',
+            },
+          ],
+        },
+      ],
+    },
+  },
   prettier,
 ]);
