@@ -22,7 +22,7 @@ Milestones:
   - Done when the app installs to the home screen and loads offline with an empty shell.
   - _Req: 7.2 · ADR-0001_
 
-- [ ] **2. Domain model and expiry logic (pure TS, unit-tested)**
+- [x] **2. Domain model and expiry logic (pure TS, unit-tested)**
   - The `Item`, `Location`, `ExpiryKind` and `Settings` types from design §3.
   - `effectiveExpiry(item, rules)`, `expiryStatus(item, today, soonDays)`, and a date helper for day-first UK/EU dates.
   - Seed `ShelfLifeRule` data as JSON, about 40 categories × locations, including fresh produce, dairy, meat, leftovers, opened jars and spices.
